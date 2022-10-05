@@ -1,0 +1,12 @@
+##ignore this file ##
+target/
+/target/
+log/
+/log/
+/test-output/
+/bin/
+/.idea/
+.classpath
+.project
+.setting
+
