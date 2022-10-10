@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="这是第一个测试">
+    <test name="TestAnnotation">
+        <parameter name="para" value="param"/>
+        <parameter name="para2" value="param2"/>
+        <parameter name="para3" value="param3"/>
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="group1"/>-->
+<!--                <include name="group2"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+
+        <classes>
+            <class name="Demo1.Demo1"/>
+            <class name="testBaseAnno.TestAnnotation"/>
+        </classes>
+    </test>
+
+    <test name="test1">
+        <classes>
+            <class name="Demo1.ConnectChromeDriver"/>
+        </classes>
+    </test>
+    <test name="test2">
+        <classes>
+            <class name="Demo1.ConnectFirefoxDriver"/>
+        </classes>
+    </test>
+</suite>
