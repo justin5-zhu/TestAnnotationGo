@@ -28,6 +28,13 @@
         <groupId>com.squareup.okhttp3</groupId>
         <artifactId>okhttp</artifactId>
         <version>4.9.3</version>
+        <!-- 在java中使用，要把android依赖排除掉-->
+<!--        <exclusions>-->
+<!--            <exclusion>-->
+<!--                <groupId>com.google.android</groupId>-->
+<!--                <artifactId>android</artifactId>-->
+<!--            </exclusion>-->
+<!--        </exclusions>-->
     </dependency>
 
     <dependency>
@@ -36,5 +43,17 @@
         <version>3.141.59</version>
     </dependency>
 
-</dependencies>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>5.3.23</version>
+    </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
 </project>

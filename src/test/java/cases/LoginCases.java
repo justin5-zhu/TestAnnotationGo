@@ -2,11 +2,13 @@ package cases;
 
 import constants.Constants;
 import okhttp3.Response;
+import org.springframework.util.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utils.HttpUtils;
-import utils.StringUtils;
+import utils.StringUtil;
+import utils.StringUtils1;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,7 +23,7 @@ import java.util.Objects;
 public class LoginCases {
     // 存放cookie
     private static String cookie = null;
-
+    private Response response;
 
 
     @DataProvider(name = "data")
@@ -40,20 +42,9 @@ public class LoginCases {
         String url = Constants.LOGIN_URL;
         String method = Constants.POST;
 //        String params ="e_rfid=gxaadmin&e_password=123456";
-        Response response = (Response) HttpUtils.call(method, url, params);
-        if (response.isSuccessful()){
-            List<String> cookies = response.headers().values("Set-Cookie");
-            if (!cookies.isEmpty()){
-                String session = cookies.get(0);
-                if (!StringUtils.isNullOrEmpty(session)){
-                    int size = session.length();
-                    int i = session.indexOf(";");
-                    if (i<size&&i>=0){
-                        cookie = session.substring(0, i);
-                    }
-                }
-            }
-        }
+        response = (Response) HttpUtils.call(method, url, params);
+        // 获取cookie并保存
+        getCookies();
         String responseStr = Objects.requireNonNull(response.body()).string();
         System.out.println(response.headers());
         System.out.println(cookie);
@@ -73,5 +64,21 @@ public class LoginCases {
                 HttpUtils.call(method, url, params);
             }
         }).start();
+    }
+
+    private void getCookies(){
+        if (response.isSuccessful()){
+            List<String> cookies = response.headers().values("Set-Cookie");
+            if (!cookies.isEmpty()){
+                String session = cookies.get(0);
+                if (!StringUtil.isEmpty(session)){
+                    int size = session.length();
+                    int i = session.indexOf(";");
+                    if (i<size&&i>=0){
+                        cookie = session.substring(0, i);
+                    }
+                }
+            }
+        }
     }
 }

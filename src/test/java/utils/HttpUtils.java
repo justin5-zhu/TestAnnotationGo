@@ -13,9 +13,11 @@ import static constants.Constants.APPLICATION;
  */
 
 public class HttpUtils {
+    private static OkHttpClient client;
+
     public static Response get(String url, String params){
         // 1、创建OKHttpClient
-        OkHttpClient client = new OkHttpClient();
+        client = new OkHttpClient();
         // 2、创建Request
         Request request = new Request.Builder()
                 .url(url+"?"+params)
@@ -36,7 +38,7 @@ public class HttpUtils {
     }
 
     public static Response post(String url, String params){
-        OkHttpClient client = new OkHttpClient();
+        client = new OkHttpClient();
         MediaType type = MediaType.parse(APPLICATION);
         RequestBody body = RequestBody.create(type, params);
         Request request = new Request.Builder()
